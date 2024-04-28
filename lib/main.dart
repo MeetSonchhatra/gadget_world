@@ -1,6 +1,7 @@
 import 'package:gadget_world/core/store.dart';
 import 'package:gadget_world/pages/cart_page.dart';
 import 'package:gadget_world/pages/login_page.dart';
+import 'package:gadget_world/pages/splashscreen.dart';
 import 'package:gadget_world/utils/routes.dart';
 import 'package:gadget_world/widgets/themes.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       darkTheme: MyTheme.darktheme(context),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (context) => LoginPage(),
+        "/": (context) => SplashScreen(),
         MyRoutes.homeroute: (context) => HomePage(),
         MyRoutes.loginroute: (context) => LoginPage(),
         MyRoutes.cartroute: (context) => CartPage()

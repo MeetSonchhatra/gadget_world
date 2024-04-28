@@ -20,7 +20,7 @@ class addtocart extends StatelessWidget {
   Widget build(BuildContext context) {
     VxState.watch(context, on : [AddMutation,RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
-   bool isInCart = _cart.items.contains(Catalog) ?? false;
+   bool isInCart = _cart.items.contains(Catalog) ;
     return ElevatedButton(
 
         onPressed: () {
@@ -33,7 +33,7 @@ class addtocart extends StatelessWidget {
         },
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(MyTheme.darkblueish),
+                MaterialStateProperty.all(context.theme.floatingActionButtonTheme.backgroundColor),
             shape: MaterialStateProperty.all(StadiumBorder())),
 //        child:isInCart? Icon(Icons.done) : "Buy".text.make());
         child:isInCart? Icon(Icons.done,color: Colors.white,) : Text('Buy' ,style: TextStyle(color: Colors.white),));

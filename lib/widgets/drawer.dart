@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class Mydrawer extends StatelessWidget {
-  const Mydrawer({super.key});
+  const Mydrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl =
-        "https://media.licdn.com/dms/image/D5603AQFJ8D-KB2MY_g/profile-displayphoto-shrink_800_800/0/1668586976195?e=2147483647&v=beta&t=A9oNvpDi8YBpiwe6B-21QFZJJdziRKUbUgMZrzIunsI";
+    final imageurl = "https://media.licdn.com/dms/image/D4E03AQH4CfduCM3Zmg/profile-displayphoto-shrink_800_800/0/1691679013483?e=2147483647&v=beta&t=A1bFkVy4k-svTe9N8uzd5ds1_TOUfcQLsc8VdEbb6P0";
     return Drawer(
       child: Container(
-        color: Colors.deepPurple,
+        color: Color(0xff403b58),
         child: ListView(
           children: [
             DrawerHeader(
@@ -25,8 +23,9 @@ class Mydrawer extends StatelessWidget {
                 accountEmail: Text("meetsonchhatra47@gmail.com",
                     style: TextStyle(color: Colors.white)),
                 currentAccountPicture:
-                    CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
+                    CircleAvatar(backgroundImage: NetworkImage(imageurl)),
               ),
+
             ),
             ListTile(
               leading: Icon(

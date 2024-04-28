@@ -1,6 +1,6 @@
 import 'package:gadget_world/widgets/addtocart.dart';
-import 'package:gadget_world/widgets/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:gadget_world/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../models/catalog.dart';
 
@@ -8,8 +8,7 @@ class HomeDetailPage extends StatelessWidget {
   final Item catalog;
 
   const HomeDetailPage({Key? key, required this.catalog})
-      : assert(catalog != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class HomeDetailPage extends StatelessWidget {
       ),
       backgroundColor: MyTheme.creamColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.backgroundColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -43,15 +42,15 @@ class HomeDetailPage extends StatelessWidget {
                 arcType: VxArcType.convex,
                 edge: VxEdge.top,
                 child: Container(
-                  color: Colors.white,
+                  color: context.backgroundColor,
                   width: context.screenWidth,
                   child: Column(
                     children: [
                       catalog.name.text.xl4
-                          .color(MyTheme.darkblueish)
+                          .color(context.textTheme.bodyLarge?.color)
                           .bold
                           .make(),
-                      catalog.desc.text.xl.make(),
+                      catalog.desc.text.xl.color(context.textTheme.bodyLarge?.color).make(),
                       10.heightBox,
                        
                     ],

@@ -2,6 +2,7 @@ import 'package:gadget_world/core/store.dart';
 import 'package:gadget_world/models/cart.dart';
 import 'package:gadget_world/pages/home_detail_page.dart';
 import 'package:gadget_world/utils/routes.dart';
+import 'package:gadget_world/widgets/drawer.dart';
 import 'package:gadget_world/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'dart:convert';
 import '../models/catalog.dart';
 import '../widgets/addtocart.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   @override
@@ -47,13 +47,13 @@ class _HomePageState extends State<HomePage> {
           mutations: {AddMutation,RemoveMutation},
           builder: (ctx,_,status) =>FloatingActionButton(
             onPressed: () => Navigator.pushNamed(context, MyRoutes.cartroute),
-            backgroundColor: MyTheme.darkblueish,
+            backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor,
             child: Icon(CupertinoIcons.cart),
-          ).badge(color: Vx.red500,
+          ).badge(color: Vx.red700,
           size: 20,
           count: _cart.items.length,
           textStyle: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
           )
           
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CatalogHeader(),
-                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                if (CatalogModel.items.isNotEmpty)
                   CatalogList().py16().expand()
                 else
                   Center(
@@ -75,7 +75,11 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-        ));
+        ),
+        drawer: Mydrawer(),
+         );
+        
+  
   }
 }
 
@@ -91,12 +95,12 @@ class CatalogHeader extends StatelessWidget {
             .text
             .xl5
             .bold
-            .color(context.theme.colorScheme.secondary)
+            .color(context.theme.textTheme.bodyLarge?.color)
             .make(),
         "Trending Products"
             .text
             .xl2
-            .color(context.theme.colorScheme.secondary)
+            .color(context.theme.textTheme.bodyLarge?.color)
             .make()
       ],
     );
@@ -127,8 +131,7 @@ class CatalogItem extends StatelessWidget {
   final Item Catalog;
 
   const CatalogItem({Key? key, required this.Catalog})
-      : assert(Catalog != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -143,21 +146,21 @@ class CatalogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Catalog.name.text.lg.color(MyTheme.darkblueish).bold.make(),
-            Catalog.desc.text.make(),
+            Catalog.name.text.lg.color(context.textTheme.bodyLarge?.color).bold.make(),
+            Catalog.desc.text.color(context.textTheme.bodyLarge?.color).make(),
             10.heightBox,
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
               buttonPadding: Vx.mH0,
               children: [
-                "\$${Catalog.price}".text.bold.xl.make(),
+                "\$${Catalog.price}".text.bold.xl.color(context.textTheme.bodyLarge?.color).make(),
                 addtocart(Catalog: Catalog, key: Key(""),),
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
 
